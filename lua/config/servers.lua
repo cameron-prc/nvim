@@ -6,4 +6,5 @@ return {
     html       = { enabled = true, mason = "html",      parsers = { "html" } },
     css        = { enabled = true, mason = "cssls",     parsers = { "css" } },
     angular    = { enabled = true, mason = "angularls", parsers = {} },
+    python     = { enabled = true, mason = "pyright",   parsers = { "python" } },
 }
