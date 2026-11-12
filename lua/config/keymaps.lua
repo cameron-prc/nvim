@@ -24,4 +24,10 @@ vim.keymap.set('n', '<C-P>', ':bprev<CR>', { desc = 'Previous Buffer' })
 
 vim.keymap.set('n', '<leader>lb', "<cmd>:ls <CR>:b", { desc = 'find buffer'})
 
-vim.keymap.set('n', 'gi', ':vim.lsp.buf.implementation()', { desc = 'Go to implementation'})
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'Go to implementation'})
+
+-- LSP (mirrors built-in grn / gra / grr / gri)
+vim.keymap.set('n', '<leader>cn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
+vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
+vim.keymap.set('n', '<leader>cr', vim.lsp.buf.references, { desc = 'References' })
+vim.keymap.set('n', '<leader>ci', vim.lsp.buf.implementation, { desc = 'Implementation' })
