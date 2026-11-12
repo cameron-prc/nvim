@@ -6,3 +6,6 @@ vim.cmd('colorscheme tokyonight')
 vim.diagnostic.config({ virtual_text = true })
 
 vim.opt.number = true
+
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
