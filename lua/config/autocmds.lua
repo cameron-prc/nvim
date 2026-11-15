@@ -1,20 +1,22 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
---
--- Add any additional autocmds here
--- with `vim.api.nvim_create_autocmd`
---
--- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
--- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
-
+-- LSP keymaps, set buffer-locally when a server attaches.
+-- The <leader>c* maps mirror the built-in grn / gra / grr / gri.
 vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client and client:supports_method("textDocument/definition") then
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = args.buf, desc = "LSP definition" })
-        end
-        if client and client:supports_method("textDocument/implementation") then
-            vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = args.buf, desc = "LSP implementation" })
-        end
-    end,
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local map = function(mode, lhs, rhs, desc)
+      vim.keymap.set(mode, lhs, rhs, { buffer = args.buf, desc = desc })
+    end
+
+    if client and client:supports_method("textDocument/definition") then
+      map("n", "gd", vim.lsp.buf.definition, "LSP definition")
+    end
+    if client and client:supports_method("textDocument/implementation") then
+      map("n", "gi", vim.lsp.buf.implementation, "LSP implementation")
+    end
+
+    map("n", "<leader>cn", vim.lsp.buf.rename, "Rename symbol")
+    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
+    map("n", "<leader>cr", vim.lsp.buf.references, "References")
+    map("n", "<leader>ci", vim.lsp.buf.implementation, "Implementation")
+  end,
 })

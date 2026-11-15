@@ -4,7 +4,7 @@ Personal config built on [lazy.nvim](https://github.com/folke/lazy.nvim). Plugin
 
 ## Requirements
 
-- Neovim 0.10+
+- Neovim 0.11+
 - Git
 - A [Nerd Font](https://www.nerdfonts.com/) (icons throughout)
 - C++ compiler (GCC/Clang/MSVC — required by nvim-treesitter to compile parsers)
@@ -52,4 +52,5 @@ Mason installs these on first launch — no manual action needed:
 | `html` | HTML LSP |
 | `cssls` | CSS LSP |
 | `angularls` | Angular LSP |
+| `pyright` | Python LSP |
 | `prettier` | Formatter (TS, JS, HTML, CSS, JSON) |

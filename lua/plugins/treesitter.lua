@@ -1,24 +1,24 @@
-local servers = require("config.servers")
+local languages = require("config.languages")
 
 local base_parsers = { "vim", "vimdoc" }
 
-local server_parsers = vim.tbl_flatten(
-    vim.tbl_values(vim.tbl_map(function(s) return s.parsers end, servers))
-)
+local server_parsers = vim.tbl_flatten(vim.tbl_values(vim.tbl_map(function(s)
+  return s.parsers
+end, languages)))
 
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        lazy = false,
-        build = ":TSUpdate",
-        opts = {
-            ensure_installed = vim.list_extend(base_parsers, server_parsers),
-            highlight = { enable = true },
-        },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    build = ":TSUpdate",
+    opts = {
+      ensure_installed = vim.list_extend(base_parsers, server_parsers),
+      highlight = { enable = true },
     },
-    {
-        "windwp/nvim-ts-autotag",
-        event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-        opts = {},
-    },
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    opts = {},
+  },
 }

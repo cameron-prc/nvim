@@ -14,10 +14,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require("config.options")
+
 require("lazy").setup({
   spec = {
     { import = "plugins" },
-    { import = "plugins.lsp" },
+    { import = "plugins.lang" },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
@@ -26,7 +28,5 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
---require("config.lsp")
 require("config.autocmds")
-require("config.options")
 require("config.keymaps")
